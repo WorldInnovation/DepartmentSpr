@@ -23,8 +23,8 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>com.aimprosoft.content.Department</value>
-                <value>com.aimprosoft.content.Employee</value>
+                <value>com.aimprosoft.model.Department</value>
+                <value>com.aimprosoft.model.Employee</value>
             </list>
         </property>
         <property name="hibernateProperties">

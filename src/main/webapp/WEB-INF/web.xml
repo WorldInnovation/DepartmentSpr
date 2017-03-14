@@ -5,12 +5,12 @@
          version="3.0">
 
     <servlet>
-        <servlet-name>initController</servlet-name>
-        <servlet-class>com.aimprosoft.controller.Controller</servlet-class>
+        <servlet-name>controller</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>initController</servlet-name>
+        <servlet-name>controller</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

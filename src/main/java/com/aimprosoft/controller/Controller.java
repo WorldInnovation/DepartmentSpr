@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-@Component
+@Component("controller")
 public class Controller implements HttpRequestHandler{
     @Autowired
     private ApplicationContext applicationContext;
+
     @Override
     public void handleRequest (HttpServletRequest req ,HttpServletResponse resp)throws ServletException, IOException {
         String url = req.getServletPath();
         InternalController mainController = (InternalController) applicationContext.getBean(url) ;
-
 
         try {
             mainController.execute(req, resp);
@@ -29,31 +29,3 @@ public class Controller implements HttpRequestHandler{
         }
     }
 }
-/*public   class Controller extends HttpServlet  {
-    private ControllerFactory factory = ControllerFactory.getInstance();
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String requestURI = req.getRequestURI();
-
-        InternalController internalController = factory.getConUrl(requestURI);
-        if(internalController==null){
-            internalController = factory.getDefaultController();
-        }
-
-        try {
-
-            internalController.execute(req, resp);
-        } catch (SQLException | HibernateException e) {
-            if(e.getMessage()!=null){
-
-                Session session = HibernateUtil.getSessionFactory().
-                        getCurrentSession();
-                session.getTransaction().
-                        rollback();
-
-                req.setAttribute("sqlError",e.getMessage());
-                resp.sendRedirect("WEB-INF/jsp/sqlException.jsp");
-            }
-        }
-    }
-}*/
