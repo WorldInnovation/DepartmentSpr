@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
 
-@Controller
+@Controller("/EmpSave")
 public class EmpSave implements InternalController {
     @Autowired
     private EmployeeService employeeService ;
@@ -47,8 +47,6 @@ public class EmpSave implements InternalController {
         Long lDepID = FormatUtils.getLongFromStr(depID);
         if (lDepID != null) employee.setDepID(lDepID);
         employee.seteMail(eMail);
-
-        String link = "/EmployeesList";
 
         try {
             employeeService.updateEmployee(employee);

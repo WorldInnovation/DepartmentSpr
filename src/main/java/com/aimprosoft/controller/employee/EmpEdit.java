@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-@Controller
+@Controller("/EmpEdit")
 public class EmpEdit implements InternalController {
     @Autowired
     private EmployeeService employeeService ;

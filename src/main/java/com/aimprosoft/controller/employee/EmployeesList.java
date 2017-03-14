@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@Controller
+@Controller("/EmployeesList")
 public class EmployeesList implements InternalController {
 @Autowired
     private EmployeeService employeeService ;

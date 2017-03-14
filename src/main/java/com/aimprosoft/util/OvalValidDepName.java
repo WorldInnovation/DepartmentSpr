@@ -7,11 +7,10 @@ import com.aimprosoft.model.Department;
 import net.sf.oval.constraint.CheckWithCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 @Service
 public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
     @Autowired
-    private DepartmentDAO departmentDAO ;//DepartmentDAOImpl();
+    private DepartmentDAO departmentDAO ;
     @Override
     public boolean isSatisfied(Object o, Object o1) {
         String depName = o1.toString();

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-@Controller
+@Controller("/DepDelete")
 public class DepDelete implements InternalController {
     @Autowired
     private DepartmentService departmentService ;
