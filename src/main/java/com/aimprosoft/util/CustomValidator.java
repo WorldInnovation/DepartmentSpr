@@ -40,63 +40,6 @@ public class CustomValidator {
     }
 }
 
-    /*    public Map<String,List<String>> getErrorMap(){
-            return errorMap;}
 
-        public ValidationException(Map<String,List<String>> errorMap){
-            this.errorMap = errorMap;
-        }
-            */
-
-
-
- /*      // ConstraintViolation constraintViolations ;
-       String strValidate =  constraintViolations.toString();
-       strValidate =  strValidate.substring(67);
-       System.out.println(strValidate);
-        //constraintViolations.get(0).getMessage();
-
-        int size = constraintViolations.size();
-
-
-        for(int i =0;i>size; i++  ){
-            strConstrain = constraintViolations.toString();
-            int strLen = strConstrain.length();
-           // strConstrain = strConstrain.;
-
-
-        }
-        System.out.println(strConstrain);
-        String strMessage = constraintViolations.get(1).getMessage();*/
-
-
-/*    public static void showConstraintViolation(ConstraintViolationException e)
-    {
-        // build constraint error
-        StringBuilder sb = new StringBuilder();
-        for (ConstraintViolation<?> violation : e.getConstraintViolations())
-        {
-            sb.append("Error: " + violation.getPropertyPath() + " : " + violation.getMessage() + "\n");
-
-        }
-        logger.error(sb.toString());
-        Notification.show(sb.toString(), Type.ERROR_MESSAGE);
-    }*/
-
-
-//
-//
-//
-//    // configure OVal to interprete OVal constraint annotations as well as EJB3 JPA annotations
-//    Validator validator = new Validator();
-//
-//    Employee entity = new Employee();
-//
-//    entity.id ="12345"; // violation - the max length is 4
-//    entity.descr =null; // violation - cannot be null
-//    entity.parent =null; // violation - cannot be null varankinviv@gmail.com
-//
-//    // collect the constraint violations
-//    List<ConstraintViolation> violations = validator.validate(entity);
 
 

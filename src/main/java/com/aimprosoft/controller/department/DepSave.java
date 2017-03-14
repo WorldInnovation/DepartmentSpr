@@ -8,6 +8,7 @@ import com.aimprosoft.service.impl.DepartmentServiceImpl;
 import com.aimprosoft.util.FormatUtils;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller("/DepSave")
 public class DepSave implements InternalController {
     @Autowired
@@ -46,6 +50,10 @@ public class DepSave implements InternalController {
             req.setAttribute("errorMap.name", errorMessage.getMessage());
             req.getRequestDispatcher("WEB-INF/jsp/editDep.jsp").forward(req, resp);
         }
-        resp.sendRedirect("/DepartmentsList");
+
+        catch (SQLException ex){
+            req.getRequestDispatcher("WEB-INF/jsp/sqlException.jsp").forward(req,resp);
+        }
+        resp.sendRedirect("/");
     }
 }

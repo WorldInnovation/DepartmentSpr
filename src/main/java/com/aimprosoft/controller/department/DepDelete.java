@@ -28,6 +28,6 @@ public class DepDelete implements InternalController {
             department = departmentService.getDepartmentById(department);
             departmentService.deleteDepartment(department);
         }
-        resp.sendRedirect("/DepartmentsList");
+        resp.sendRedirect("/");
     }
 }
