@@ -4,11 +4,9 @@ import com.aimprosoft.controller.InternalController;
 import com.aimprosoft.exeption.ValidateExp;
 import com.aimprosoft.model.Employee;
 import com.aimprosoft.service.EmployeeService;
-import com.aimprosoft.service.impl.EmployServiceImpl;
 import com.aimprosoft.util.FormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +15,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
 
-@Controller(value = "empSave")
+@Component
 public class EmpSave implements InternalController {
     @Autowired
-    private EmployeeService employeeService ;
+    private EmployeeService employeeService;
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, SQLException {
@@ -52,8 +50,8 @@ public class EmpSave implements InternalController {
         try {
             employeeService.updateEmployee(employee);
         } catch (ValidateExp exp) {
-            req.setAttribute("depID",depID);
-            req.setAttribute("empID",empID);
+            req.setAttribute("depID", depID);
+            req.setAttribute("empID", empID);
             req.setAttribute("errorMap", exp.getErrorMap());
             req.setAttribute("employee", employee);
             req.getRequestDispatcher("WEB-INF/jsp/empEdit.jsp").forward(req, resp);//need write tedirect

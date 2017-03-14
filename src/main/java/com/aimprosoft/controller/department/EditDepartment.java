@@ -5,17 +5,18 @@ import com.aimprosoft.model.Department;
 import com.aimprosoft.service.DepartmentService;
 import com.aimprosoft.util.FormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-@Controller
+
+@Component
 public class EditDepartment implements InternalController {
     @Autowired
-    private DepartmentService departmentService ;
+    private DepartmentService departmentService;
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, SQLException {

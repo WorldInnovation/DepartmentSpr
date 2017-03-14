@@ -13,10 +13,11 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Service
 public class CustomValidator {
     @Autowired
-    private Validator validator ;
+    private Validator validator;
 
     public void validate(Object object) throws ValidateExp {
         List<ConstraintViolation> constraintViolations = validator.validate(object);

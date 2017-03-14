@@ -9,15 +9,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 
 @Repository
 public class DepHibernateDAOImpl implements DepartmentDAO {
-@Autowired
+    @Autowired
     SessionFactory sessionFactory;
 
     public void delete(Department department) throws SQLException {
@@ -25,14 +23,14 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         List<Employee> employees = (List<Employee>) session.
-                        createQuery("from Employee e where e.depId=:depID").setParameter("depID", depID).
-                        list();
+                createQuery("from Employee e where e.depId=:depID").setParameter("depID", depID).
+                list();
         session.close();
-        for (Employee emp: employees) {
-            HibernateUtil.executeDAO(emp,"delete");
+        for (Employee emp : employees) {
+            HibernateUtil.executeDAO(emp, "delete");
         }
-        
-        HibernateUtil.executeDAO(department,"delete");
+
+        HibernateUtil.executeDAO(department, "delete");
  /*
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -69,7 +67,7 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
-        department = (Department) session.get(Department.class,lDepID);
+        department = (Department) session.get(Department.class, lDepID);
         session.close();
 
         return department;

@@ -4,19 +4,18 @@ import com.aimprosoft.controller.InternalController;
 import com.aimprosoft.exeption.ValidateExp;
 import com.aimprosoft.model.Department;
 import com.aimprosoft.service.DepartmentService;
-import com.aimprosoft.service.impl.DepartmentServiceImpl;
 import com.aimprosoft.util.FormatUtils;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-@Controller
+
+@Component
 public class DepSave implements InternalController {
     @Autowired
     private DepartmentService departmentService;
@@ -39,8 +38,7 @@ public class DepSave implements InternalController {
             req.setAttribute("depId", depId);
             req.setAttribute("errorMap", ex.getErrorMap());
             req.getRequestDispatcher("WEB-INF/jsp/editDep.jsp").forward(req, resp);
-        }
-        catch (ConstraintViolationException errorMessage){
+        } catch (ConstraintViolationException errorMessage) {
             req.setAttribute("department", department);
             req.setAttribute("depId", depId);
             req.setAttribute("errorMap.name", errorMessage.getMessage());

@@ -13,12 +13,13 @@ import java.util.List;
 
 @Repository
 public class EmpHibernateDAOImpl implements EmployeeDAO {
-@Autowired
+    @Autowired
     private SessionFactory sessionFactory;
+
     @Override
     public void delete(Employee employee) throws SQLException {
 
-        HibernateUtil.executeDAO(employee,"delete");
+        HibernateUtil.executeDAO(employee, "delete");
 /*
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -32,7 +33,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
 
     @Override
     public void update(Employee employee) throws SQLException {
-        HibernateUtil.executeDAO(employee,"update");
+        HibernateUtil.executeDAO(employee, "update");
 /*        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -59,7 +60,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
         Long lEmpID = employee.getId();
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        employee = (Employee) session.get(Employee.class, lEmpID) ;
+        employee = (Employee) session.get(Employee.class, lEmpID);
         /*  department = (Department) session.get(Department.class,lDepID);
         if (session.get(Employee.class, lDepID) == null) {
             session.close();

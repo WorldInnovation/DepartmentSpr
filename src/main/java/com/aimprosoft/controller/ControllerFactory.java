@@ -1,34 +1,23 @@
 package com.aimprosoft.controller;
 
-import com.aimprosoft.controller.department.DepDelete;
-import com.aimprosoft.controller.department.DepSave;
 import com.aimprosoft.controller.department.DepartmentsList;
-import com.aimprosoft.controller.department.EditDepartment;
-import com.aimprosoft.controller.employee.EmpDelete;
-import com.aimprosoft.controller.employee.EmpEdit;
-import com.aimprosoft.controller.employee.EmpSave;
-import com.aimprosoft.controller.employee.EmployeesList;
 
-import java.util.HashMap;
 import java.util.Map;
 
 class ControllerFactory {
     private static ControllerFactory INSTANCE = null;
     private volatile static boolean instanceCreated = false;
-    private Map<String, InternalController> controllerMap = new HashMap<String, InternalController>();
+    private Map<String, InternalController> controllerMap;
     private InternalController defaultController = new DepartmentsList();
 
-
-    {
-        controllerMap.put("/", defaultController);
-        controllerMap.put("/DepDelete", new DepDelete());
-        controllerMap.put("/EditDepartment", new EditDepartment());
-        controllerMap.put("/EmpDelete", new EmpDelete());
-        controllerMap.put("/EmployeesList", new EmployeesList());
-        controllerMap.put("/EmpEdit", new EmpEdit());
-        controllerMap.put("/DepSave", new DepSave());
-        controllerMap.put("/EmpSave", new EmpSave());
+    public void setControllerMap(Map<String, InternalController> controllerMap) {
+        this.controllerMap = controllerMap;
     }
+
+    public void setDefaultController(InternalController defaultController) {
+        this.defaultController = defaultController;
+    }
+
 
     InternalController getConUrl(String url) {
 

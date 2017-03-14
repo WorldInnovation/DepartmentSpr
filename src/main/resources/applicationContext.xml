@@ -2,14 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-                             http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+                             http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <context:property-placeholder location="classpath:database.properties"/>
 
-    <context:component-scan base-package="com.aimprosoft.controller,com.aimprosoft.service,com.aimprosoft.dao"/>
+    <context:component-scan base-package="com.aimprosoft"/>
 
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -23,8 +23,8 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>com.aimprosoft.content.Department</value>
-                <value>com.aimprosoft.content.Employee</value>
+                <value>com.aimprosoft.model.Department</value>
+                <value>com.aimprosoft.model.Employee</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -35,6 +35,7 @@
                 <prop key="hibernate.current_session_context_class">${hibernate.current_session_context_class}</prop>
             </props>
         </property>
+        <property name="packagesToScan" value="com.aimprosoft.model"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -46,7 +47,24 @@
 
     <bean id="myValidator" class="net.sf.oval.Validator"/>
 
-    <bean id="myCustomValidator" class="com.aimprosoft.util.CustomValidator"/>
+    <bean id="controllerFactory" class="com.aimprosoft.controller.ControllerFactory" factory-method="getInstance">
+        <property name="controllerMap">
+            <util:map map-class="java.util.HashMap">
+                <entry key="/" value-ref="departmentsList" />
+                <entry key="/DepDelete" value-ref="depDelete" />
+                <entry key="/EditDepartment" value-ref="editDepartment" />
+                <entry key="/EmpDelete" value-ref="empDelete" />
+                <entry key="/EmployeesList" value-ref="employeesList" />
+                <entry key="/EmpEdit" value-ref="empEdit" />
+                <entry key="/DepSave" value-ref="depSave" />
+                <entry key="/EmpSave" value-ref="empSave" />
+
+            </util:map>
+        </property>
+        <property name="defaultController" ref="departmentsList"/>
+    </bean>
+
+    <!--<bean id="myCustomValidator" class="com.aimprosoft.util.CustomValidator"/>-->
 
 <!--
     <bean id="mySpringUtils" class="com.aimprosoft.util.SpringUtils"/>
