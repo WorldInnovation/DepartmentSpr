@@ -2,7 +2,6 @@ package com.aimprosoft.util;
 
 
 import com.aimprosoft.dao.DepartmentDAO;
-import com.aimprosoft.dao.impl.DepHibernateDAOImpl;
 import com.aimprosoft.model.Department;
 import net.sf.oval.constraint.CheckWithCheck;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
+
+    private DepartmentDAO departmentDAO ;
+
     @Autowired
-    private DepartmentDAO departmentDAO ;//DepartmentDAOImpl();
+    public OvalValidDepName(DepartmentDAO departmentDAO){
+        super();
+        this.departmentDAO = departmentDAO;
+    }
+
     @Override
     public boolean isSatisfied(Object o, Object o1) {
         String depName = o1.toString();
