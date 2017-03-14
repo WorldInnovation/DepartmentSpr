@@ -48,6 +48,7 @@
 
     <bean id="myCustomValidator" class="com.aimprosoft.util.CustomValidator"/>
 
+    <bean id="ovalValidDepName" class="com.aimprosoft.util.OvalValidDepName"/>
 <!--
     <bean id="mySpringUtils" class="com.aimprosoft.util.SpringUtils"/>
 -->

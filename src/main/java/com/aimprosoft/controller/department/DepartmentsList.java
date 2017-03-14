@@ -3,11 +3,8 @@ package com.aimprosoft.controller.department;
 import com.aimprosoft.controller.InternalController;
 import com.aimprosoft.model.Department;
 import com.aimprosoft.service.DepartmentService;
-import com.aimprosoft.service.impl.DepartmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

@@ -7,6 +7,7 @@ import com.aimprosoft.service.EmployeeService;
 import com.aimprosoft.service.impl.EmployServiceImpl;
 import com.aimprosoft.util.FormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
 
-@Controller(value = "empSave")
+@Controller
 public class EmpSave implements InternalController {
     @Autowired
     private EmployeeService employeeService ;

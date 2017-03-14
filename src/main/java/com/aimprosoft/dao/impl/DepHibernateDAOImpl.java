@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Repository
+@Qualifier("departmentDAO")
 public class DepHibernateDAOImpl implements DepartmentDAO {
 @Autowired
     SessionFactory sessionFactory;

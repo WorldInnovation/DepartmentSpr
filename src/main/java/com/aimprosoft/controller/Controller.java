@@ -1,17 +1,35 @@
 package com.aimprosoft.controller;
 
-import com.aimprosoft.util.HibernateUtil;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.web.HttpRequestHandler;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+@Component
+public class Controller implements HttpRequestHandler{
+    @Autowired
+    private ApplicationContext applicationContext;
+    @Override
+    public void handleRequest (HttpServletRequest req ,HttpServletResponse resp)throws ServletException, IOException {
+        String url = req.getServletPath();
+        InternalController mainController = (InternalController) applicationContext.getBean(url) ;
 
-public   class Controller extends HttpServlet  {
+
+        try {
+            mainController.execute(req, resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            req.setAttribute("sqlError",e.getMessage());
+            resp.sendRedirect("WEB-INF/jsp/sqlException.jsp");
+        }
+    }
+}
+/*public   class Controller extends HttpServlet  {
     private ControllerFactory factory = ControllerFactory.getInstance();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,4 +56,4 @@ public   class Controller extends HttpServlet  {
             }
         }
     }
-}
+}*/
