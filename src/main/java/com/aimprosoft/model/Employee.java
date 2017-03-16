@@ -11,7 +11,7 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -21,7 +21,7 @@ public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
   //  @Column(name = "firstName")
 //    @NotNull

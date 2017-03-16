@@ -27,7 +27,7 @@ public class DepSave implements InternalController {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, SQLException {
-        String strDepId = req.getParameter("DepID");
+            String strDepId = req.getParameter("DepID");
         String depName = req.getParameter("DepName");
         Long depId = FormatUtils.getLongFromStr(strDepId);
         Department department = new Department();

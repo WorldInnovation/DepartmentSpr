@@ -17,9 +17,10 @@ import java.util.Iterator;
 import java.util.List;
 
 @Repository
-@Qualifier("departmentDAO")
+/*@Qualifier("departmentDAO")*/
 public class DepHibernateDAOImpl implements DepartmentDAO {
-@Autowired
+
+    @Autowired
     SessionFactory sessionFactory;
 
     public void delete(Department department) throws SQLException {
@@ -27,13 +28,13 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         List<Employee> employees = (List<Employee>) session.
-                        createQuery("from Employee e where e.depId=:depID").setParameter("depID", depID).
-                        list();
+                createQuery("from Employee e where e.depId=:depID").setParameter("depID", depID).
+                list();
         session.close();
         for (Employee emp: employees) {
             HibernateUtil.executeDAO(emp,"delete");
         }
-        
+
         HibernateUtil.executeDAO(department,"delete");
  /*
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -90,39 +91,12 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         return dep;
     }
     //-------------
-
-//
-//    public Session openCurrentSession() {
-//
-//        currentSession = getSessionFactory().openSession();
-//
-//        return currentSession;
-//
-//    }
-//    private static SessionFactory getSessionFactory() {
-//
-//        Configuration configuration = new Configuration().configure();
-//
-//        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-//
-//                .applySettings(configuration.getProperties());
-//
-//        SessionFactory sessionFactory = configuration.
-//                buildSessionFactory(builder.build());
-//
-//        return sessionFactory;
-//
-//    }
-//    public Session getCurrentSession() {
-//        return currentSession;
-//    }
-//    public void setCurrentSession(Session currentSession) {
-//
-//        this.currentSession = currentSession;
-//
-//    }
-//    public void closeCurrentSession() {
-//        currentSession.close();
-//    }
+/*    @Override
+    public List<Department> getAll() throws SQLException{
+  Session session = currentSession();
+  session.beginTransaction();
+        List<Department> departments = (List<Department>) session.createQuery("from Department").list();
+        return departments;
+    }*/
 
 }

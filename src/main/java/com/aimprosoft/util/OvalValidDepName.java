@@ -5,11 +5,9 @@ import com.aimprosoft.dao.DepartmentDAO;
 import com.aimprosoft.model.Department;
 import net.sf.oval.constraint.CheckWithCheck;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-@Qualifier("ovalValidDepName")
 public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
     @Autowired
     private DepartmentDAO departmentDAO ;
@@ -24,6 +22,7 @@ public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
             department = departmentDAO.existNameInDB(department);
         } catch (Exception e){
             e.printStackTrace();
+            return false;
         }
 
         if(department.getId()==null || (dep.getId()!=null && dep.getId().equals(department.getId()))){
