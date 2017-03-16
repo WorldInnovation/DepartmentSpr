@@ -19,28 +19,12 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
     private SessionFactory sessionFactory;
     @Override
     public void delete(Employee employee) throws SQLException {
-
         HibernateUtil.executeDAO(employee,"delete");
-/*
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.delete(employee);
-        session.getTransaction().commit();
-        session.close();
-*/
-
     }
 
     @Override
     public void update(Employee employee) throws SQLException {
         HibernateUtil.executeDAO(employee,"update");
-/*        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.saveOrUpdate(employee);
-        session.getTransaction().commit();
-        session.close();*/
     }
 
     @Override
@@ -62,11 +46,7 @@ public class EmpHibernateDAOImpl implements EmployeeDAO {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         employee = (Employee) session.get(Employee.class, lEmpID) ;
-        /*  department = (Department) session.get(Department.class,lDepID);
-        if (session.get(Employee.class, lDepID) == null) {
-            session.close();
-            throw new SQLException("Employee don't exist");
-        }*/
+
         session.close();
         return employee;
 

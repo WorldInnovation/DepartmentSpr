@@ -19,7 +19,6 @@ import java.util.List;
 @Repository
 /*@Qualifier("departmentDAO")*/
 public class DepHibernateDAOImpl implements DepartmentDAO {
-
     @Autowired
     SessionFactory sessionFactory;
 
@@ -34,28 +33,12 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         for (Employee emp: employees) {
             HibernateUtil.executeDAO(emp,"delete");
         }
-
         HibernateUtil.executeDAO(department,"delete");
- /*
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.delete(department);
-        session.getTransaction().commit();
-        session.close();*/
     }
-
     @Override
     public void update(Department department) throws SQLException {
         HibernateUtil.executeDAO(department, "update");
-/*        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.saveOrUpdate(department);
-        session.getTransaction().commit();
-        session.close();*/
     }
-
     @Override
     public List<Department> getAll() throws SQLException {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -65,7 +48,6 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         session.close();
         return departments;
     }
-
     @Override
     public Department getDepByID(Department department) throws SQLException {
         Long lDepID = department.getId();
@@ -74,10 +56,8 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
 
         department = (Department) session.get(Department.class,lDepID);
         session.close();
-
         return department;
     }
-
     @Override
     public Department existNameInDB(Department department) throws SQLException {
         String depName = department.getName();
@@ -90,7 +70,8 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         Department dep = (Department) query.uniqueResult();
         return dep;
     }
-    //-------------
+}
+//-------------
 /*    @Override
     public List<Department> getAll() throws SQLException{
   Session session = currentSession();
@@ -98,5 +79,3 @@ public class DepHibernateDAOImpl implements DepartmentDAO {
         List<Department> departments = (List<Department>) session.createQuery("from Department").list();
         return departments;
     }*/
-
-}

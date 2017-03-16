@@ -22,6 +22,7 @@ public class OvalValidDepName implements CheckWithCheck.SimpleCheck {
             department = departmentDAO.existNameInDB(department);
         } catch (Exception e){
             e.printStackTrace();
+
             return false;
         }
 
